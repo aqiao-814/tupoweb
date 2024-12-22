@@ -1,7 +1,15 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export default function Footer({ className = "" }) {
   const currentYear = new Date().getFullYear();
+
+  const menuItems = [
+    { title: "Home", href: "/" },
+    { title: "About us", href: "/about" },
+    { title: "Learn more", href: "/learn" },
+    { title: "Coming soon", href: "/soon" },
+  ];
 
   const socialLinks = [
     {
@@ -58,20 +66,19 @@ export default function Footer({ className = "" }) {
               Quick Links
             </h4>
             <ul className="space-y-2">
-              {["About", "Products", "Learn More", "Coming Soon"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href={`/${item.toLowerCase().replace(" ", "-")}`}
-                      className="text-secondary-300 hover:text-white transition-colors duration-200"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
+              {menuItems.map((item) => (
+                <li key={item.title}>
+                  <Link
+                    to={item.href}
+                    className="text-secondary-300 hover:text-white transition-colors duration-200"
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
+
           {/* Social Links */}
           <div>
             <h4 className="text-white text-lg font-semibold mb-4">
